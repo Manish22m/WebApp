@@ -11,7 +11,6 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-
     @Autowired
     ProductService productService;
 
@@ -25,8 +24,18 @@ public class ProductController {
         return productService.getById(prodId);
     }
 
-//    @PostMapping("/update")
-//    public void update(@RequestBody Product product){
-//        productService.update(product);
-//    }
+    @PostMapping("/add")
+    public void addprod(@RequestBody Product product){
+        productService.addprod(product);
+    }
+
+    @PutMapping("/update/{prodId}")
+    public void updateprod(@PathVariable int prodId,@RequestBody Product product){
+        productService.update(prodId ,product);
+    }
+
+    @DeleteMapping("/delete/{prodId}")
+    public void delete(@PathVariable int prodId){
+        productService.deleteById(prodId);
+    }
 }

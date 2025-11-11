@@ -24,8 +24,20 @@ public class ProductService {
                 .findFirst().get();
     }
 
-//    public void update(Product product) {
-//        product.add(product);
-//
-//    }
+    public void addprod(Product product) {
+        products.add(product);
+
+    }
+
+    public void update(int prodId, Product product) {
+        Product prod=products.stream().filter(p -> p.getProdId()==prodId).findFirst().get();
+        prod.setProdName(product.getProdName());
+        prod.setPrice(product.getPrice());
+//        prod.setProdId(product.getProdId());
+    }
+
+    public void deleteById(int prodId) {
+        Product prod=products.stream().filter(p -> p.getProdId()==prodId).findFirst().get();
+        products.remove(prod);
+    }
 }
